@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function(){
+    $result = file_get_contents('https://api.douban.com/v2/movie/in_theaters?start=0&count=10');
+    return response()->json(json_decode($result));
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
